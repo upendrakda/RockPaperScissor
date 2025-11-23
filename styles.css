@@ -1,0 +1,31 @@
+body{
+    background-color: #132440;
+    text-align: center;
+}
+
+h1{
+    color: #ffaa00;
+    margin: 30px;
+    letter-spacing: 2px;
+}
+
+h2{
+    color: whitesmoke;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.container div{
+    border: #ffffff 1px solid;
+    height: 200px;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+}
