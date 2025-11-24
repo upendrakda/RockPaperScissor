@@ -3,6 +3,8 @@ const comp_choice = ["Rock", "Paper", "Scissor"];
 document.getElementById("demo").innerHTML = comp_choice[num];
 
 let clicked= 0;
+let round = 1;
+const maxRounds = 3;
 
 function changeImage(element) {
      if (clicked) return;
@@ -31,3 +33,27 @@ function changeImage(element) {
     document.getElementById("score").innerHTML = `${user_score} - ${comp_score}`;
     document.getElementById("result").innerHTML = result;
 }
+// ---------------------------
+const roundText = document.getElementById("round-text");
+
+function showRound(roundNumber) {
+    roundText.textContent = `Round ${roundNumber}`;
+    roundText.classList.add("show");
+
+    setTimeout(() => {
+        roundText.classList.remove("show");
+        showChoices(); // function to reveal Rock/Paper/Scissors
+    }, 1500); // duration of animation
+}
+function showChoices() {
+    document.querySelector(".choices").classList.add("show");
+}
+const playBtn = document.getElementById("play-btn");
+const rulesScreen = document.getElementById("rules-screen");
+
+playBtn.addEventListener("click", function() {
+    rulesScreen.style.display = "none";  // hide rules overlay
+    showRound(1);  // start first round
+});
+
+// -----------------------

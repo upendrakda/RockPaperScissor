@@ -9,6 +9,15 @@
 <body>
     <h1 id="name">Rock Paper Scissor</h1>
     <h2>Simple rules Endless battles</h2>
+    <div id="rules-screen" class="overlay">
+      <div class="rules-content">
+        <p style="font-size: 60px; font-weight: bold; color: #ff7b00; text-shadow: 3px 3px 10px #000000;">How to Play</p>
+        <p id="text">Rock beats Scissors, Paper beats Rock, Scissors beats Paper</p>
+        <button id="play-btn">Play</button>
+      </div>
+    </div>
+    <div id="round-text" class="round-text overlay">Round 1</div>
+
     <div class="container">
         <div>
             <h1>You</h1>
@@ -37,7 +46,6 @@
             <img src="/RockPaperScissor/images/scissor.png" alt="Scissor" onclick="changeImage(this)">
         </div>
     </div>
-    <br><br><br><br><br><br><br><br><br>
     <p id="demo" style="color: blue; font-size: 50px;"></p>
     <p id="demo2" style="color: blue; font-size: 50px;"></p>
     
