@@ -7,8 +7,10 @@ return document.getElementById("demo").innerHTML = option[num];
 
 let clicked= 0;
 let round = 1;
+let comp_score=0;
+let user_score=0;
 
-//change selected image, logic and score
+//change selected image
 function changeImage(element) {
      if (clicked) return;
     clicked = 1;
@@ -20,10 +22,10 @@ function changeImage(element) {
     document.getElementById("demo2").innerHTML = user_choice;
 }
 
+//logic 
 function score(user_choice, comp_choice){
     let result="";
-    let comp_score=0;
-    let user_score=0;
+    
     if(user_choice===comp_choice){
         result="Draw!";
         round++;
@@ -42,7 +44,10 @@ function score(user_choice, comp_choice){
     }
     document.getElementById("score").innerHTML = `${user_score} - ${comp_score}`;
     document.getElementById("result").innerHTML = result;
-    if(round<=3){
+    if(round>3){
+        show_result(user_score, comp_score);
+    }
+    else{
         clicked=0;
         setTimeout(() => showRound(round), 2000);
     }
@@ -71,6 +76,9 @@ function showRound(num) {
     content.style.padding = "0";
 
     content.innerHTML = `<h1 class="round-text">Round ${num}</h1>`;
+    
+    document.getElementById("round").innerHTML = `Round ${round}`;
+    document.getElementById("result").innerHTML = "";
 
     setTimeout(() => {
         document.querySelector(".round-text").classList.add("show");
@@ -79,4 +87,23 @@ function showRound(num) {
     setTimeout(() => {
         overlay.style.display = "none";
     }, 1500);
+}
+
+function show_result(user_score, comp_score){
+    var result="";
+    if(user_score===comp_score){
+        result="Tie";
+    }
+    else if(user_score>comp_score){
+        result="You";
+    }
+    else{
+        result="Computer";
+    }
+    var final_score= document.getElementById("final_score");
+    final_score.innerHTML=`
+        <h1>Game Over</h1>
+        <p>Final Score: USER(${user_score}) - COMPUTER(${comp_score})</p>
+        <p>Winner: ${result}</p>
+        <button id="restart-btn">Play Again</button>`;
 }
