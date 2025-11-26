@@ -1,59 +1,82 @@
+//generate random no.
+function random_num(){
 let num = Math.floor(Math.random() * 3);
-const comp_choice = ["Rock", "Paper", "Scissor"];
-document.getElementById("demo").innerHTML = comp_choice[num];
+const option = ["Rock", "Paper", "Scissor"];
+return document.getElementById("demo").innerHTML = option[num];
+}
 
 let clicked= 0;
 let round = 1;
-const maxRounds = 3;
 
+//change selected image, logic and score
 function changeImage(element) {
      if (clicked) return;
     clicked = 1;
 
     document.getElementById("user").src = element.src;
     var user_choice = element.alt;
+    var comp_choice = random_num();
+    score(user_choice, comp_choice);
     document.getElementById("demo2").innerHTML = user_choice;
+}
 
+function score(user_choice, comp_choice){
     let result="";
     let comp_score=0;
     let user_score=0;
-    if(user_choice===comp_choice[num]){
+    if(user_choice===comp_choice){
         result="Draw!";
+        round++;
     }
-    else if((user_choice === "Rock" && comp_choice[num] === "Scissor") ||
-        (user_choice === "Paper" && comp_choice[num] === "Rock") ||
-        (user_choice === "Scissor" && comp_choice[num] === "Paper")){
+    else if((user_choice === "Rock" && comp_choice === "Scissor") ||
+        (user_choice === "Paper" && comp_choice === "Rock") ||
+        (user_choice === "Scissor" && comp_choice === "Paper")){
         result = "You Win!";
         user_score++;
+        round++;
     } 
     else {
         result = "You Lose!";
         comp_score++;
+        round++;
     }
     document.getElementById("score").innerHTML = `${user_score} - ${comp_score}`;
     document.getElementById("result").innerHTML = result;
+    if(round<=3){
+        clicked=0;
+        setTimeout(() => showRound(round), 2000);
+    }
 }
-// ---------------------------
-const roundText = document.getElementById("round-text");
 
-function showRound(roundNumber) {
-    roundText.textContent = `Round ${roundNumber}`;
-    roundText.classList.add("show");
+//display content and button function
+window.onload = () => {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "flex";
+
+    attachStartButton();
+};
+
+function attachStartButton() {
+    const btn = document.getElementById("play-btn");
+    btn.onclick = () => showRound(round);
+}
+
+function showRound(num) {
+    const overlay = document.getElementById("overlay");
+    const content = document.getElementById("overlay-content");
+
+    overlay.style.display = "flex";
+
+    content.style.background = "none";
+    content.style.padding = "0";
+
+    content.innerHTML = `<h1 class="round-text">Round ${num}</h1>`;
 
     setTimeout(() => {
-        roundText.classList.remove("show");
-        showChoices(); // function to reveal Rock/Paper/Scissors
-    }, 1500); // duration of animation
-}
-function showChoices() {
-    document.querySelector(".choices").classList.add("show");
-}
-const playBtn = document.getElementById("play-btn");
-const rulesScreen = document.getElementById("rules-screen");
+        document.querySelector(".round-text").classList.add("show");
+    }, 100);
 
-playBtn.addEventListener("click", function() {
-    rulesScreen.style.display = "none";  // hide rules overlay
-    showRound(1);  // start first round
-});
-
-// -----------------------
+    setTimeout(() => {
+        overlay.style.display = "none";
+    }, 1500);
+}
