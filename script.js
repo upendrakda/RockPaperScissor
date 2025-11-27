@@ -2,7 +2,7 @@
 function random_num(){
 let num = Math.floor(Math.random() * 3);
 const option = ["Rock", "Paper", "Scissor"];
-return document.getElementById("demo").innerHTML = option[num];
+return option[num];
 }
 
 let clicked= 0;
@@ -19,7 +19,6 @@ function changeImage(element) {
     var user_choice = element.alt;
     var comp_choice = random_num();
     score(user_choice, comp_choice);
-    document.getElementById("demo2").innerHTML = user_choice;
 }
 
 //logic 
@@ -45,7 +44,7 @@ function score(user_choice, comp_choice){
     document.getElementById("score").innerHTML = `${user_score} - ${comp_score}`;
     document.getElementById("result").innerHTML = result;
     if(round>3){
-        show_result(user_score, comp_score);
+        setTimeout(() => show_result(user_score, comp_score), 2000);
     }
     else{
         clicked=0;
@@ -90,20 +89,29 @@ function showRound(num) {
 }
 
 function show_result(user_score, comp_score){
+    const overlay = document.getElementById("overlay");
+    const content = document.getElementById("overlay-content");
+
+    overlay.style.display = "flex";
+
+    content.style.background = "none";
+    content.style.padding = "0";
+    
     var result="";
     if(user_score===comp_score){
         result="Tie";
     }
     else if(user_score>comp_score){
-        result="You";
+        result="You Won!";
     }
     else{
-        result="Computer";
+        result="You Loose!";
     }
-    var final_score= document.getElementById("final_score");
-    final_score.innerHTML=`
+    
+    content.innerHTML=`
         <h1>Game Over</h1>
-        <p>Final Score: USER(${user_score}) - COMPUTER(${comp_score})</p>
-        <p>Winner: ${result}</p>
-        <button id="restart-btn">Play Again</button>`;
+        <p>${user_score} - ${comp_score}</p>
+        <p>${result}</p>
+        <button id="play-btn">Play Again</button>`;
+        
 }
