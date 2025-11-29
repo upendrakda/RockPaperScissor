@@ -119,7 +119,7 @@ function show_result(user_score, comp_score){
         result="You Won!";
     }
     else{
-        result="You Loose!";
+        result="You Lose!";
     }
 
     
@@ -127,10 +127,13 @@ function show_result(user_score, comp_score){
     document.getElementById("comp").src = `/RockPaperScissor/images/computer.png`;
     
     content.innerHTML=`
-        <h1>Game Over</h1>
-        <p>${user_score} - ${comp_score}</p>
-        <p>${result}</p>
-        <button id="restart-btn">Play Again</button>`;
+    <div  class="overlay-content">
+        <h1 class="content">Game Over</h1>
+        <p id="text">You vs Bot</p>
+        <p id="text">${user_score} - ${comp_score}</p>
+        <p id="text">${result}</p>
+        <button id="restart-btn">Play Again</button>
+    </div>`;
     
     restartButton();
 }

@@ -5,7 +5,7 @@ body{
 
 #name{
     color: #ffaa00;
-    margin-top: 30px;
+    margin-top: 25px;
     letter-spacing: 2px;
 }
 
@@ -19,7 +19,7 @@ h2{
 
 p{
     color: #3b9797;
-    font-size: 50px;
+    font-size: 2.5em;
 }
 
 #text{
@@ -33,6 +33,7 @@ p{
     font-weight: bold; 
     color: #ff7b00; 
     text-shadow: 3px 3px 10px #000000;
+    margin-top: 0px;
 }
 
 button{
@@ -41,49 +42,57 @@ button{
     border-radius: 5px;
     color: white;
     padding: 15px 32px;
-    text-align: center;
     font-weight: bold;
-    text-decoration: none;
-    display: inline-block;
     font-size: 30px;
-    margin: 4px 2px;
     cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* move transition here */
 }
 
-.container{
+button:hover {
+    transform: scale(1.2);
+    background-color: #29BF12; /* optional subtle color change on hover */
+}
+ 
+.container {
     display: flex;
     flex-direction: row;
+    justify-content: space-around; /* spread items nicely */
+    align-items: center;
+    flex-wrap: wrap; /* allows items to wrap if needed */
+    gap: 10px; /* spacing between columns */
 }
 
-.container div{
-    border: #ffffff 1px solid;
+.container img {
     height: auto;
-    width: 100%;
+    max-width: clamp(100px, 20vw, 300px);
 }
 
 img {
   width: 100%;
-  max-width: 300px;
+  max-width: 275px;
   height: auto;
   border-radius: 10px;
 }
 
-.option{
+.option {
     display: flex;
     flex-direction: row;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .option div{
-    border: #ffffff 1px solid;
     height: auto;
     width: 100%;
 }
 
 .option img {
   width: 100%;
-  max-width: 100px;
   height: auto;
   border-radius: 10px;
+  max-width: clamp(50px, 15vw, 100px);
 }
 
 .option img:hover{
@@ -93,12 +102,15 @@ img {
 }
 
 @media screen and (max-width: 600px) {
-  .container {
-    flex-direction: column;
-  }
+    .container img {
+        max-width: 150px; /* smaller images on mobile */
+    }
+
+    .option img {
+        max-width: 80px; /* smaller selectable icons */
+    }
 }
 
-/* ---------------------------------- */
 .overlay {
     position: fixed;
     top: 0; left: 0;
@@ -117,6 +129,7 @@ img {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 20px;
 }
+
 .round-text {
     position: absolute;
     top: 40%;
@@ -132,14 +145,3 @@ img {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.5); /* moves toward us */
 }
-
-.choices {
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-.choices.show {
-    opacity: 1;
-}
-
-/* ---------------------------- */
