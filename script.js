@@ -57,12 +57,25 @@ window.onload = () => {
     const overlay = document.getElementById("overlay");
     overlay.style.display = "flex";
 
-    attachStartButton();
+    startButton();
 };
 
-function attachStartButton() {
+function startButton() {
+    user_score=0;
+    comp_score=0;
     const btn = document.getElementById("play-btn");
+    document.getElementById("score").innerHTML = `${user_score} - ${comp_score}`;
     btn.onclick = () => showRound(round);
+}
+
+function restartButton(){
+    clicked = 0;
+    round = 1;
+    comp_score = 0;
+    user_score = 0;
+    const btn = document.getElementById("restart-btn");
+    document.getElementById("score").innerHTML = `${user_score} - ${comp_score}`;
+    btn.onclick =()=> showRound(round);
 }
 
 function showRound(num) {
@@ -112,6 +125,7 @@ function show_result(user_score, comp_score){
         <h1>Game Over</h1>
         <p>${user_score} - ${comp_score}</p>
         <p>${result}</p>
-        <button id="play-btn">Play Again</button>`;
-        
+        <button id="restart-btn">Play Again</button>`;
+    
+    restartButton();
 }
