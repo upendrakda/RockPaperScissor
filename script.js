@@ -18,6 +18,7 @@ function changeImage(element) {
     document.getElementById("user").src = element.src;
     var user_choice = element.alt;
     var comp_choice = random_num();
+    document.getElementById("comp").src = `/RockPaperScissor/images/${comp_choice.toLowerCase()}.png`;
     score(user_choice, comp_choice);
 }
 
@@ -120,6 +121,10 @@ function show_result(user_score, comp_score){
     else{
         result="You Loose!";
     }
+
+    
+    document.getElementById("user").src = `/RockPaperScissor/images/human.png`;
+    document.getElementById("comp").src = `/RockPaperScissor/images/computer.png`;
     
     content.innerHTML=`
         <h1>Game Over</h1>
