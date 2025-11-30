@@ -92,6 +92,10 @@ function showRound(num) {
     
     document.getElementById("round").innerHTML = `Round ${round}`;
     document.getElementById("result").innerHTML = "";
+        
+    document.getElementById("user").src = `/RockPaperScissor/images/human.jpg`;
+    document.getElementById("comp").src = `/RockPaperScissor/images/computer.jpg`;
+  
 
     setTimeout(() => {
         document.querySelector(".round-text").classList.add("show");
@@ -121,11 +125,7 @@ function show_result(user_score, comp_score){
     else{
         result="You Lose!";
     }
-
-    
-    document.getElementById("user").src = `/RockPaperScissor/images/human.jpg`;
-    document.getElementById("comp").src = `/RockPaperScissor/images/computer.jpg`;
-    
+  
     content.innerHTML=`
     <div  class="overlay-content">
         <h1 class="content">Game Over</h1>
