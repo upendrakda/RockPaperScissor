@@ -18,7 +18,7 @@ function changeImage(element) {
     document.getElementById("user").src = element.src;
     var user_choice = element.alt;
     var comp_choice = random_num();
-    document.getElementById("comp").src = `/RockPaperScissor/images/${comp_choice.toLowerCase()}.png`;
+    document.getElementById("comp").src = `/RockPaperScissor/images/${comp_choice.toLowerCase()}.jpg`;
     score(user_choice, comp_choice);
 }
 
@@ -123,8 +123,8 @@ function show_result(user_score, comp_score){
     }
 
     
-    document.getElementById("user").src = `/RockPaperScissor/images/human.png`;
-    document.getElementById("comp").src = `/RockPaperScissor/images/computer.png`;
+    document.getElementById("user").src = `/RockPaperScissor/images/human.jpg`;
+    document.getElementById("comp").src = `/RockPaperScissor/images/computer.jpg`;
     
     content.innerHTML=`
     <div  class="overlay-content">

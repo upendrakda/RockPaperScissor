@@ -6,7 +6,6 @@ body{
 #name{
     color: #ffaa00;
     margin-top: 25px;
-    letter-spacing: 2px;
 }
 
 h1{
@@ -20,6 +19,7 @@ h2{
 p{
     color: #3b9797;
     font-size: 2.5em;
+    margin: 10px;
 }
 
 #text{
@@ -56,10 +56,11 @@ button:hover {
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around; /* spread items nicely */
-    align-items: center;
-    flex-wrap: wrap; /* allows items to wrap if needed */
-    gap: 10px; /* spacing between columns */
+    justify-content: flex-start; 
+    align-items: first baseline;
+    flex-wrap: wrap;
+    gap: 230px; 
+    padding-left: 80px;
 }
 
 .container img {
@@ -108,6 +109,12 @@ img {
 
     .option img {
         max-width: 80px; /* smaller selectable icons */
+    }
+
+    .container{
+        justify-content: space-around; 
+        gap: 10px;
+       padding-left: 0px;
     }
 }
 
